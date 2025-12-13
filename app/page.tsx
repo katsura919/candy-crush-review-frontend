@@ -286,7 +286,7 @@ export default function Home() {
           <div className="flex flex-wrap gap-4 justify-center">
             {[
               "This game is absolutely amazing! I love it!",
-              "Worst game ever. Too many ads.",
+              "This game is the worst! I can't stand the constant ads and glitches.",
               "It's okay, nothing special but kills time.",
             ].map((example, i) => (
               <button
