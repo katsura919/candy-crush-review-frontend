@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 interface PredictionResponse {
   review: string;
@@ -79,21 +80,137 @@ export default function Home() {
       <div className="max-w-3xl mx-auto relative z-10">
         {/* Floating candies background */}
         <div className="fixed inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-10 left-10 text-6xl animate-bounce opacity-40 drop-shadow-lg">
-            🍭
-          </div>
-          <div className="absolute top-32 right-20 text-5xl animate-bounce delay-100 opacity-40 drop-shadow-lg">
-            🍬
-          </div>
-          <div className="absolute bottom-20 left-32 text-7xl animate-bounce delay-200 opacity-40 drop-shadow-lg">
-            🍰
-          </div>
-          <div className="absolute bottom-40 right-10 text-6xl animate-bounce delay-300 opacity-40 drop-shadow-lg">
-            🧁
-          </div>
-          <div className="absolute top-1/2 left-1/4 text-5xl animate-bounce delay-150 opacity-40 drop-shadow-lg">
-            🍫
-          </div>
+          {[
+            {
+              icon: "🍭",
+              top: "10%",
+              left: "10%",
+              size: "text-6xl",
+              delay: 0,
+              duration: 15,
+            },
+            {
+              icon: "🍬",
+              top: "20%",
+              right: "20%",
+              size: "text-5xl",
+              delay: 2,
+              duration: 18,
+            },
+            {
+              icon: "🍰",
+              bottom: "20%",
+              left: "30%",
+              size: "text-7xl",
+              delay: 4,
+              duration: 20,
+            },
+            {
+              icon: "🧁",
+              bottom: "10%",
+              right: "10%",
+              size: "text-6xl",
+              delay: 1,
+              duration: 16,
+            },
+            {
+              icon: "🍫",
+              top: "50%",
+              left: "25%",
+              size: "text-5xl",
+              delay: 3,
+              duration: 19,
+            },
+            {
+              icon: "🍩",
+              top: "15%",
+              left: "45%",
+              size: "text-6xl",
+              delay: 5,
+              duration: 17,
+            },
+            {
+              icon: "🍪",
+              bottom: "30%",
+              right: "40%",
+              size: "text-5xl",
+              delay: 2.5,
+              duration: 21,
+            },
+            {
+              icon: "🍧",
+              top: "60%",
+              right: "15%",
+              size: "text-6xl",
+              delay: 1.5,
+              duration: 18.5,
+            },
+            {
+              icon: "🍦",
+              bottom: "50%",
+              left: "10%",
+              size: "text-7xl",
+              delay: 3.5,
+              duration: 22,
+            },
+            {
+              icon: "🍡",
+              top: "5%",
+              right: "35%",
+              size: "text-5xl",
+              delay: 0.5,
+              duration: 16.5,
+            },
+            {
+              icon: "🍮",
+              bottom: "5%",
+              left: "50%",
+              size: "text-6xl",
+              delay: 4.5,
+              duration: 19.5,
+            },
+            {
+              icon: "🍯",
+              top: "40%",
+              right: "5%",
+              size: "text-5xl",
+              delay: 2.8,
+              duration: 17.5,
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              className={`absolute ${item.size} opacity-30 drop-shadow-lg`}
+              style={{
+                top: item.top,
+                left: item.left,
+                right: item.right,
+                bottom: item.bottom,
+              }}
+              animate={{
+                y: [0, -50, 0],
+                x: [0, 30, 0],
+                rotate: [0, 20, -20, 0],
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: item.duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: item.delay,
+              }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.5, rotate: 360 }}
+                drag
+                dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                dragElastic={0.2}
+                className="cursor-pointer pointer-events-auto"
+              >
+                {item.icon}
+              </motion.div>
+            </motion.div>
+          ))}
         </div>
 
         {/* Header */}
@@ -166,10 +283,7 @@ export default function Home() {
                     Analyzing Magic... ✨
                   </>
                 ) : (
-                  <>
-     
-                    Analyze Review
-                  </>
+                  <>Analyze Review</>
                 )}
               </div>
             </button>
